@@ -32,7 +32,7 @@ function listOptions() {
                 viewItems();
                 break;
             case "View Low Inventory":
-
+                viewLowInv();
                 break;
             case "Add to Inventory":
 
@@ -53,9 +53,16 @@ function viewItems() {
     });
 };
 
+function viewLowInv() {
+    connection.query("SELECT * FROM products WHERE stock_quantity < 5", function (err, resp) {
+        printTable(resp);
+    });
+};
+
+
 
 // Prints a table for the data
-function printTable(resp){
+function printTable(resp) {
     var data = resp;
     var t = new Table;
     data.forEach(function (product) {
