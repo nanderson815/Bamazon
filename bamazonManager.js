@@ -35,7 +35,7 @@ function listOptions() {
                 viewLowInv();
                 break;
             case "Add to Inventory":
-
+                addInv();
                 break;
             case "Add New Product":
 
@@ -46,6 +46,30 @@ function listOptions() {
 
 listOptions();
 
+
+
+// Add to inv function
+function addInv() {
+    inquirer.prompt([
+        {
+            name: 'product',
+            type: "input",
+            message: "Enter item id for product to add inventory."
+        },
+        {
+            name: 'amount',
+            type: 'input',
+            message: 'How much inventory needs to be added?'
+        }
+    ]).then(function (answer) {
+        var prod = answer.product;
+        var amt = answer.amount;
+        connection.query(`UPDATE products SET stock_quantity = stock_quantity + ${amt} WHERE item_id = ${prod}` );
+        connection.end();
+    });
+};
+
+
 // Grabs all items in the dataset
 function viewItems() {
     connection.query("SELECT * FROM products", function (err, resp) {
@@ -53,6 +77,7 @@ function viewItems() {
     });
 };
 
+// Grabs all the low Inventory Items
 function viewLowInv() {
     connection.query("SELECT * FROM products WHERE stock_quantity < 5", function (err, resp) {
         printTable(resp);
