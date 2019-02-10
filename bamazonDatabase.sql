@@ -27,6 +27,6 @@ VALUES
 ("Dining Room Table", "Furniture", 899.99, 15),
 ("Shower Gel", "Toiletries", 8.99, 125),
 ("Google Home Max", "Electronics", 99.99, 199),
-("Couch and Loveseat", "Furniture", 425.99, 7)
+("Couch and Loveseat", "Furniture", 425.99, 7);
 
 
