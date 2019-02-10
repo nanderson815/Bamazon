@@ -15,7 +15,7 @@ connection.connect(function (err) {
 });
 
 
-
+// Function to prompt user what they would like to buy.
 function buyProduct() {
     inquirer.prompt([
         {
@@ -33,10 +33,11 @@ function buyProduct() {
     })
 };
 
+// Starts the app
 buyProduct();
 
 
-
+// Function to see if there is enough inventory.
 function checkInventory(id, quant) {
     connection.query("SELECT * FROM products WHERE ?",
         [{
@@ -54,7 +55,7 @@ function checkInventory(id, quant) {
 };
 
 
-
+// Function to complete a purchase.
 function completePurchase(id, quant, cost) {
     connection.query("UPDATE products SET ? WHERE ?", [
         {
