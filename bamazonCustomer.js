@@ -10,12 +10,9 @@ var connection = mysql.createConnection({
     database: "bamazon_db"
 });
 
-connection.connect(function(err){
+connection.connect(function (err) {
     if (err) throw err;
 });
-
-
-
 
 
 
@@ -32,8 +29,41 @@ function buyProduct() {
             type: "input"
         }
     ]).then(function (answ) {
-        console.log(answ);
+        checkInventory(answ.ID, answ.quantity);
     })
 };
 
 buyProduct();
+
+
+
+function checkInventory(id, quant) {
+    connection.query("SELECT * FROM products WHERE ?",
+        [{
+            item_id: id
+        }], function (err, resp) {
+            if (resp[0].stock_quantity >= quant) {
+                var cost = resp[0].price * quant;
+                var remaining = resp[0].stock_quantity - quant;
+                completePurchase(id, remaining, cost);
+            } else {
+                console.log("Insufficient quantity!");
+                connection.end();
+            }
+        });
+};
+
+
+
+function completePurchase(id, quant, cost) {
+    connection.query("UPDATE products SET ? WHERE ?", [
+        {
+            stock_quantity: quant
+        },
+        {
+            item_id: id
+        }
+    ]);
+    console.log("Thank you for your purchase! The total cost was $" + cost);
+    connection.end();
+};
