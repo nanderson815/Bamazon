@@ -17,7 +17,7 @@ connection.connect(function (err) {
 
 
 
-
+// Funtion that allows user to pick a task
 function listOptions() {
     inquirer.prompt([
         {
@@ -31,38 +31,41 @@ function listOptions() {
             case "View Products for Sale":
                 viewItems();
                 break;
-
             case "View Low Inventory":
 
                 break;
-
             case "Add to Inventory":
 
                 break;
-
             case "Add New Product":
 
                 break;
         };
-
     });
 };
 
 listOptions();
 
+// Grabs all items in the dataset
 function viewItems() {
     connection.query("SELECT * FROM products", function (err, resp) {
-        var data = resp;
-        var t = new Table;
-        data.forEach(function (product) {
-            t.cell('Product Id', product.item_id)
-            t.cell('Product Name', product.product_name)
-            t.cell('Department', product.department_name) 
-            t.cell('Quantity', product.stock_quantity)
-            t.cell('Price, USD', product.price, Table.number(2))
-            t.newRow()
-        })
-        console.log(t.toString())
-        connection.end();
+        printTable(resp);
     });
+};
+
+
+// Prints a table for the data
+function printTable(resp){
+    var data = resp;
+    var t = new Table;
+    data.forEach(function (product) {
+        t.cell('Product Id', product.item_id)
+        t.cell('Product Name', product.product_name)
+        t.cell('Department', product.department_name)
+        t.cell('Quantity', product.stock_quantity)
+        t.cell('Price, USD', product.price, Table.number(2))
+        t.newRow()
+    });
+    console.log("\n" + t.toString());
+    connection.end();
 };
