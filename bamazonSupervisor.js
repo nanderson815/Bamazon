@@ -36,5 +36,20 @@ function listOptions() {
 listOptions();
 
 function createDepartment() {
-    
+    inquirer.prompt([
+        {
+            name: 'name',
+            type: 'input',
+            message: 'Enter the department name:'
+        },
+        {
+            name: 'overhead',
+            type: 'input',
+            message: 'Input the department monthly overhead:'
+        }
+    ]).then(function(answer){
+        connection.query(`INSERT INTO departments (department_name, over_head_costs) VALUES ('${answer.name}', ${answer.overhead})`);
+        connection.end();
+    })
+
 }
