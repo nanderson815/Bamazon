@@ -22,19 +22,21 @@ function listOptions() {
             name: 'choice',
             type: 'list',
             message: 'Select an Action',
-            choices: ['Veiw Product Sales by Department', 'Create New Department']
+            choices: ['View Product Sales by Department', 'Create New Department']
         }
     ]).then(function (ans) {
-        if (ans.choice === "View Product Sales by Depertment") {
-
+        if (ans.choice === "View Product Sales by Department") {
+            viewSales();
         } else {
-            createDepartment()
+            createDepartment();
         }
     });
 };
 
 listOptions();
 
+
+// Funciton to create department.
 function createDepartment() {
     inquirer.prompt([
         {
@@ -53,3 +55,24 @@ function createDepartment() {
     })
 
 }
+
+function viewSales(){
+    connection.query(`SELECT * FROM departments`, function(err, resp){
+        printTable(resp);
+    })
+}
+
+
+// Prints a table for the data
+function printTable(resp) {
+    var data = resp;
+    var t = new Table;
+    data.forEach(function (product) {
+        t.cell('Department ID', product.department_id)
+        t.cell('Department Name', product.department_name)
+        t.cell('Over Head Costs', product.over_head_costs)
+        t.newRow()
+    });
+    console.log("\n" + t.toString());
+    connection.end();
+};
