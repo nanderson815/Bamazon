@@ -65,6 +65,14 @@ function completePurchase(id, quant, cost) {
             item_id: id
         }
     ]);
+    connection.query("UPDATE products SET ? WHERE ?", [
+        {
+            product_sales: cost
+        },
+        {
+            item_id: id
+        }
+    ]);
     console.log("Thank you for your purchase! The total cost was $" + cost);
     connection.end();
 };
