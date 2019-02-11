@@ -38,13 +38,44 @@ function listOptions() {
                 addInv();
                 break;
             case "Add New Product":
-
+                newProduct();
                 break;
         };
     });
 };
 
 listOptions();
+
+
+
+function newProduct() {
+    inquirer.prompt([
+        {
+            name: 'name',
+            type: 'input',
+            message: 'Enter the name of the product:'
+        },
+        {
+            name: 'department',
+            type: 'input',
+            message: 'Enter the department:'
+        },
+        {
+            name: 'price',
+            type: 'input',
+            message: 'Enter the price:'
+        },
+        {
+            name: 'stock',
+            type: 'input',
+            message: 'Enter the quantity to add to the stock:'
+        }
+    ]).then(function (answer) {
+        connection.query(`INSERT INTO products (product_name, department_name, price, stock_quantity) 
+                        VALUES ('${answer.name}', '${answer.department}', ${answer.price}, ${answer.stock})`)
+        connection.end();
+    });
+};
 
 
 
@@ -64,11 +95,10 @@ function addInv() {
     ]).then(function (answer) {
         var prod = answer.product;
         var amt = answer.amount;
-        connection.query(`UPDATE products SET stock_quantity = stock_quantity + ${amt} WHERE item_id = ${prod}` );
+        connection.query(`UPDATE products SET stock_quantity = stock_quantity + ${amt} WHERE item_id = ${prod}`);
         connection.end();
     });
 };
-
 
 // Grabs all items in the dataset
 function viewItems() {
@@ -83,8 +113,6 @@ function viewLowInv() {
         printTable(resp);
     });
 };
-
-
 
 // Prints a table for the data
 function printTable(resp) {
