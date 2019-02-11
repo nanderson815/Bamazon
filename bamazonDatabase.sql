@@ -40,4 +40,11 @@ CREATE TABLE departments
     primary key(department_id)
 )
 
+INSERT INTO departments(department_name, over_head_costs)
+VALUES
+('Electronics', 5000),
+('Furniture', 12000),
+('Homegoods', 6000),
+('Pets', 8000),
+('Toiletries', 4000);
 
