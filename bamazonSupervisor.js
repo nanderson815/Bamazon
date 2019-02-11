@@ -59,7 +59,6 @@ function createDepartment() {
 function viewSales() {
     connection.query(`SELECT department_id, departments.department_name, departments.over_head_costs, SUM(product_sales) as product_sales, SUM(product_sales) - departments.over_head_costs as total_profit FROM departments JOIN products ON products.department_name = departments.department_name GROUP BY department_name ORDER BY department_id;`, 
     function (err, resp) {
-            console.log(resp);
             printTable(resp);
         })
 }
