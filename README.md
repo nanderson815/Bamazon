@@ -13,7 +13,7 @@ The customer can buy products from bamazon by entering the ID (1-10) and the qua
 ![bamazon customer example](/readmeImages/bamazonCustomer.png)
 
 ### Bamazon Manager
-The manager of the store can View Products for sale, View Low Inventory, Add to Inventory, and Add a New Product by folling the prompts. Use `node bamazonManager.js` to launch the application. Follow the prompts to complete any of the tasks.
+The manager of the store can View Products for sale, View Low Inventory, Add to Inventory, and Add a New Product by following the prompts. Use `node bamazonManager.js` to launch the application. Follow the prompts to complete any of the tasks.
 
 ##### View Products
 ![bamazon manager example](/readmeImages/bamazonManager-view.png)
