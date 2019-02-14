@@ -8,7 +8,21 @@ To begin, seed the database with the `bamazonDatabase.sql` file using MySql Work
 Don't forget to `npm install` before using the application. 
 
 #### Bamazon Customer
-The customer can buy products from bamazon by entering the ID (1-10) and the quantity of the product they would like to buy. Use `node bamazonCustomer.js` to runn the customer application. Follow the prompts to complete the transacton.
+The customer can buy products from bamazon by entering the ID (1-10) and the quantity of the product they would like to buy. Use `node bamazonCustomer.js` to run the customer application. Follow the prompts to complete the transacton.
 
 ![bamazon customer example](/readmeImages/bamazonCustomer.png)
 
+#### Bamazon Manager
+The manager of the store can View Products for sale, View Low Inventory, Add to Inventory, and Add a New Product by folling the prompts. Use `node bamazonManager.js` to launch the application. Follow the prompts to complete any of the tasks.
+
+##### View Products
+![bamazon manager example](/readmeImages/bamazonManager-view.png)
+
+##### View Low Inventory
+![bamazon manager example](/readmeImages/bamazonManager-viewLoq.png)
+
+##### Add to Inventory
+![bamazon manager example](/readmeImages/bamazonManager-add.png)
+
+##### Add a New Product
+![bamazon manager example](/readmeImages/bamazonManager-addP.png)
