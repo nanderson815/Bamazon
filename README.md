@@ -10,5 +10,5 @@ Don't forget to `npm install` before using the application.
 ####Bamazon Customer
 The customer can buy products from bamazon by entering the ID (1-10) and the quantity of the product they would like to buy. Use `node bamazonCustomer.js` to runn the customer application. Follow the prompts to complete the transacton.
 
-
+![bamazon customer example](/readmeImages/bamazonCustomer.png)
 
