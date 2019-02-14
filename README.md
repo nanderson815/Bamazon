@@ -1,1 +1,2 @@
-# Bamazon
+# Bamazon - A Node.js Storefront
+ 
